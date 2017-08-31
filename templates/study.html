@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}<title>学习英语</title>{% endblock %}
+{% block body %}<body onpageshow="question()">
+    <h1>你正在学习： {{ dic_name }} 词典</h1>
+        <h2 id="en_word"></h2>
+            <textarea id="cn_word" readonly="readonly"  rows="3" cols="20" onfocus="answer()">点击显示答案</textarea>
+    <button onclick="next()">下一题</button>
+    <br>
+    <p><a href="/">回主页</a>
+
+    <script>
+        var cn_word
+        function question() {
+                var en_list = {{ en_list|tojson }};
+                var cn_list = {{ cn_list|tojson }};
+                var n = en_list.length;
+                var i = parseInt(n * Math.random());
+                var en_word = en_list[i];
+                cn_word = cn_list[i];
+                document.getElementById("en_word").innerHTML=en_word;
+          }
+          function answer(){
+                document.getElementById("cn_word").innerHTML=cn_word;
+          }
+          function next() {
+                document.getElementById("cn_word").innerHTML="";
+                question();
+          }
+        </script>
+    </body>
+{% endblock %}

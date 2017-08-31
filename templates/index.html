@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}<title>index</title>{% endblock %}
+{% block body %}<body>
+    <div>
+    {%  if upload %}
+        <h1>{{ upload }}</h1>
+    {%  endif  %}
+    </div>
+
+    <div>
+	<h1> 请上传你的词库 </h1>
+        <p></p>
+	<form action="/upload" method="post" enctype="multipart/form-data">
+		上传词库文件:<br><input type="file" name="file" style="width:200px"><br>
+		词库名:<input type="text" name="dic_name"><br>
+        <input type="submit" value="上传"></input>
+	</form>
+	    <p></p>
+    </div>
+
+    <div>
+    {% if dic_list %}
+        <h1>现在已经有如下词库</h1>
+        <form id="dicname" action="/" method="post">
+        <select name="dic_name" onChange="autosubmit();">
+            {% for dic in dic_list %}
+                {% if dic_sele %}
+                    {% if dic_sele == dic %}
+                        <option value="{{ dic }}" selected>{{ dic }} </option>
+                    {% else %}
+                        <option value="{{ dic }}">{{ dic }}</option>
+                    {% endif %}
+                {% else %}
+                    <option value="{{ dic }}">{{ dic }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        </form>
+    {% endif %}
+    </div>
+    <div>
+          {% if dic_con %}
+            <textarea rows="15" cols="25" readonly="readonly">{{ dic_con }}</textarea>
+           {% endif %}
+             <form action="" name="select" method="post">
+                 <input type="hidden" name="dic_sele" value="{{ dic_sele }}">
+                 <button onclick="del()" >删除字典</button>
+                 <button onclick="study()" >开始学习</button>
+             </form>
+    </div>
+
+    <script type="text/javascript">
+    function autosubmit(){
+        document.getElementById("dicname").submit();
+    }
+    function del(){
+        document.select.action="/delete";
+        document.select.submit();
+    }
+    function study() {
+        document.select.action="/study";
+        document.select.submit();
+    }
+</script>
+</body>
+{% endblock %}
+
