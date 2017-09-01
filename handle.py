@@ -1,12 +1,12 @@
 # ---coding:utf-8----
 import sqlite3
 import os
-
+import setting
 
 class Handle(object):
     # setting dir
-    dir = r"E:\PyCharm 2017.2.2\mypro_3.6\user_dic\\"
-    db_dir = r"E:\PyCharm 2017.2.2\mypro_3.6\\"
+    dir = setting.dir
+    db_dir = setting.db_dir
 
     # 翻译
     def trans(self, word):

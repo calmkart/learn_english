@@ -47,7 +47,7 @@
 			<div class="form-group">
 				<h1>现在已有如下词库</h1>
 				<label for="name">选择词库</label>
-				<select class="selectpicker" name="dic_name" onChange="autosubmit();" data-live-search="true" title="search...">
+				<select class="selectpicker" data-size="5" name="dic_name" onChange="autosubmit();" data-live-search="true" title="search...">
 					{% for dic in dic_list %}
 						{% if dic_sele %}
 							{% if dic_sele == dic %}
