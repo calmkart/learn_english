@@ -25,7 +25,7 @@ def upload():
         name = request.form['dic_name']
         handles.dic_add(file, name)
         dic_list = handles.dic_ls()
-        return render_template('index.html', upload="upload success!!", dic_list=dic_list)
+        return render_template('index.html', upload="upload success!!", dic_list=dic_list, dic_sele=dic_list[0])
 
 
 @app.route('/delete', methods=['POST', 'GET'])
@@ -34,7 +34,7 @@ def delete():
         name = request.form['dic_sele']
         handles.dic_del(name)
         dic_list = handles.dic_ls()
-        return render_template('index.html', upload="delete success!!", dic_list=dic_list)
+        return render_template('index.html', upload="delete success!!", dic_list=dic_list, dic_sele=dic_list[0])
 
 
 @app.route('/study', methods=['POST', 'GET'])
