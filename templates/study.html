@@ -1,12 +1,53 @@
 {% extends "base.html" %}
 {% block title %}<title>学习英语</title>{% endblock %}
 {% block body %}<body onpageshow="question()">
-    <h1>你正在学习： {{ dic_name }} 词典</h1>
-        <h2 id="en_word"></h2>
-            <textarea id="cn_word" readonly="readonly"  rows="3" cols="20" onfocus="answer()">点击显示答案</textarea>
-    <button onclick="next()">下一题</button>
-    <br>
-    <p><a href="/">回主页</a>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<ul class="nav nav-pills nav-justified">
+				<li><a href="/">Home</a></li>
+                <li class="active">
+				<a href="/study">Study</a></li>
+				<li><a href="http://www.calmkart.com/">To My Blog</a></li>
+			</ul><br><br><br>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column" align="center">
+            <h1>你正在学习： 《{{ dic_name }}》 词典</h1><br>
+            <h1 id="en_word" align="center" style="color:brown;font-style:oblique;" ></h1>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-2 column">
+		</div>
+		<div class="col-md-8 column">
+            <textarea style="font-size:30px;color: indigo" id="cn_word" class="form-control" rows="8" readonly="readonly" onfocus="answer()">点击显示答案</textarea>
+		</div>
+		<div class="col-md-2 column">
+		</div>
+	</div>
+</div>
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-2 column"></div>
+        <div class="col-md-2 column">
+            <button type="button" class="btn btn-primary btn-lg btn-block " onclick="gohome()" >EXIT</button>
+        </div>
+        <div class="col-md-4 column">
+        </div>
+        <div class="col-md-2 column"><!--btn-block用于让按钮填满整个格子-->
+            <button type="button" class="btn btn-primary btn-lg btn-block " onclick="next()" >NEXT</button>
+        </div>
+    </div>
+</div>
 
     <script>
         var cn_word
@@ -23,8 +64,11 @@
                 document.getElementById("cn_word").innerHTML=cn_word;
           }
           function next() {
-                document.getElementById("cn_word").innerHTML="";
+                document.getElementById("cn_word").innerHTML="点击显示答案";
                 question();
+          }
+          function gohome() {
+              window.location.href="/";
           }
         </script>
     </body>
