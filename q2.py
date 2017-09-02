@@ -32,7 +32,6 @@ class q2(object):
             helper(x, y-1, hm)
         if(y<(self.m-1) and hm[x][y+1]>=hm[x][y]):
             helper(x, y+1, hm)
-        return 1
 
 test = q2()
 test.main()
