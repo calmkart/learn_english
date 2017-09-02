@@ -24,13 +24,13 @@ class q2(object):
     def helper(self, x, y, hm):
         if hm[x][y] > self.result:
             self.result = hm[x][y]
-        if(x>0 and hm[x-1][y]>hm[x][y]):
+        if(x>0 and hm[x-1][y]>=hm[x][y]):
             helper(x-1, y, hm)
-        if(x<(self.n-1) and hm[x+1][y]>hm[x][y]):
+        if(x<(self.n-1) and hm[x+1][y]>=hm[x][y]):
             helper(x+1, y, hm)
-        if(y>0 and hm[x][y-1]>hm[x][y]):
+        if(y>0 and hm[x][y-1]>=hm[x][y]):
             helper(x, y-1, hm)
-        if(y<(self.m-1) and hm[x][y+1]>hm[x][y]):
+        if(y<(self.m-1) and hm[x][y+1]>=hm[x][y]):
             helper(x, y+1, hm)
         return 1
 
