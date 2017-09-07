@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}<title>学习英语</title>{% endblock %}
-{% block body %}<body onpageshow="question()">
+{% block body %}<body onpageshow="question()" onkeydown="handles_keyboard(event)">
 <div class="container">
 	<div class="row clearfix">
 		<div class="col-md-12 column">
@@ -28,7 +28,7 @@
 		<div class="col-md-2 column">
 		</div>
 		<div class="col-md-8 column">
-            <textarea style="font-size:30px;color: indigo" id="cn_word" class="form-control" rows="8" readonly="readonly" onfocus="answer()">点击显示答案</textarea>
+            <textarea style="font-size:30px;color: indigo" id="cn_word" class="form-control" rows="8" readonly="readonly" onfocus="answer()">点击显示答案(或按空格/回车)</textarea>
 		</div>
 		<div class="col-md-2 column">
 		</div>
@@ -50,7 +50,8 @@
 </div>
 
     <script>
-        var cn_word
+        var cn_word;
+		var num = 0;
         function question() {
                 var en_list = {{ en_list|tojson }};
                 var cn_list = {{ cn_list|tojson }};
@@ -58,13 +59,22 @@
                 var i = parseInt(n * Math.random());
                 var en_word = en_list[i];
                 cn_word = cn_list[i];
-                document.getElementById("en_word").innerHTML=en_word;
+				num = num+1;
+                document.getElementById("en_word").innerHTML=en_word+'     '+'('+num+')';
           }
           function answer(){
                 document.getElementById("cn_word").innerHTML=cn_word;
           }
+		  function handles_keyboard(event){
+				if (event.keyCode==13 || event.keyCode==32){
+					answer();
+				}
+				if (event.keyCode ==39){
+					next();
+				}
+		  }
           function next() {
-                document.getElementById("cn_word").innerHTML="点击显示答案";
+                document.getElementById("cn_word").innerHTML="点击显示答案(或按空格/回车)";
                 question();
           }
           function gohome() {
